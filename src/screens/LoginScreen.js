@@ -22,6 +22,8 @@ const logoSource = require("../../assets/images/app-logo.png");
 
 WebBrowser.maybeCompleteAuthSession();
 
+const Container = Platform.OS === "ios" ? KeyboardAvoidingView : View;
+
 export const LoginScreen = ({ navigation }) => {
   const { signIn, setActive, isLoaded } = useSignIn();
   const { startOAuthFlow: startGoogleOAuth } = useOAuth({ strategy: "oauth_google" });
@@ -97,9 +99,9 @@ export const LoginScreen = ({ navigation }) => {
   );
 
   return (
-    <KeyboardAvoidingView
+    <Container
       style={styles.container}
-      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      behavior={Platform.OS === "ios" ? "padding" : undefined}
     >
       <ScrollView
         contentContainerStyle={styles.content}
@@ -107,7 +109,7 @@ export const LoginScreen = ({ navigation }) => {
         showsVerticalScrollIndicator={false}
       >
         <View style={styles.logoContainer}>
-            <Image source={logoSource} style={styles.logo} />
+          <Image source={logoSource} style={styles.logo} />
         </View>
 
         <View style={styles.card}>
@@ -163,6 +165,6 @@ export const LoginScreen = ({ navigation }) => {
           </TouchableOpacity>
         </View>
       </ScrollView>
-    </KeyboardAvoidingView>
+    </Container>
   );
 };

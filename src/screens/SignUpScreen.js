@@ -18,6 +18,8 @@ import styles from "../styles/SignUpScreenStyles";
 
 const logoSource = require("../../assets/images/app-logo.png");
 
+const Container = Platform.OS === "ios" ? KeyboardAvoidingView : View;
+
 export const SignUpScreen = ({ navigation }) => {
   const { isLoaded, signUp, setActive } = useSignUp();
   const { startOAuthFlow: startGoogleOAuth } = useOAuth({ strategy: "oauth_google" });
@@ -118,9 +120,9 @@ export const SignUpScreen = ({ navigation }) => {
   );
 
   return (
-    <KeyboardAvoidingView
+    <Container
       style={styles.container}
-      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      behavior={Platform.OS === "ios" ? "padding" : undefined}
     >
       <ScrollView
         contentContainerStyle={styles.content}
@@ -128,8 +130,8 @@ export const SignUpScreen = ({ navigation }) => {
         showsVerticalScrollIndicator={false}
       >
         <View style={styles.logoContainer}>
-            <Image source={logoSource} style={styles.logo} />
-          </View>
+          <Image source={logoSource} style={styles.logo} />
+        </View>
 
         <View style={styles.card}>
           <View style={styles.heroSection}>
@@ -207,6 +209,6 @@ export const SignUpScreen = ({ navigation }) => {
           </TouchableOpacity>
         </View>
       </ScrollView>
-    </KeyboardAvoidingView>
+    </Container>
   );
 };

@@ -3,7 +3,7 @@
 const signUpStyles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#ecfdf3"
+    backgroundColor: "#ecfdf3",
   },
   content: {
     flexGrow: 1,
@@ -13,11 +13,10 @@ const signUpStyles = StyleSheet.create({
   logoContainer: {
     alignItems: "center",
   },
- 
   logo: {
     width: 230,
     height: 230,
-    resizeMode: "contain"
+    resizeMode: "contain",
   },
   heroSection: {
     alignItems: "center",
@@ -33,7 +32,7 @@ const signUpStyles = StyleSheet.create({
     fontSize: 14,
     color: "#15803d",
     textAlign: "center",
-    fontWeight:300,
+    fontWeight: "300"
   },
   card: {
     width: "100%",
@@ -49,7 +48,7 @@ const signUpStyles = StyleSheet.create({
   },
   form: {
     width: "100%",
-    marginBottom: 15,
+    marginBottom: 10,
     elevation: 6
   },
   input: {
@@ -58,10 +57,10 @@ const signUpStyles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingVertical: 14,
     fontSize: 16,
-    elevation: 2,
     borderWidth: 1,
-    borderColor:  "#86dfb1ff",
-    fontWeight:200,
+    borderColor: "#86dfb1ff",
+    elevation: 2,
+    fontWeight: "300"
   },
   inputSpacing: {
     marginBottom: 12
@@ -85,20 +84,19 @@ const signUpStyles = StyleSheet.create({
   instruction: {
     fontSize: 15,
     color: "#4b5563",
-    
-    textAlign: "center"
+    textAlign: "center",
+   
   },
   divider: {
     flexDirection: "row",
     alignItems: "center",
-    
   },
   dividerLabel: {
     marginHorizontal: 12,
     color: "#6b7280",
     fontSize: 14,
-    marginBottom: 10,
-    fontWeight: "300"
+    fontWeight: "300",
+     marginBottom:10
   },
   line: {
     flex: 1,

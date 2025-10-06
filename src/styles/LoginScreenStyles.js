@@ -8,13 +8,12 @@ const loginStyles = StyleSheet.create({
   content: {
     flexGrow: 1,
     paddingHorizontal: 24,
-    paddingTop: 80,
-  
+    paddingTop: 90,
   },
   logoContainer: {
     alignItems: "center",
+
   },
- 
   logo: {
     width: 230,
     height: 230,
@@ -34,8 +33,7 @@ const loginStyles = StyleSheet.create({
     fontSize: 14,
     color: "#15803d",
     textAlign: "center",
-    fontWeight:300,
-
+    fontWeight: "300"
   },
   card: {
     width: "100%",
@@ -61,10 +59,9 @@ const loginStyles = StyleSheet.create({
     paddingVertical: 14,
     fontSize: 16,
     borderWidth: 1,
-    elevation: 2,
     borderColor: "#86dfb1ff",
-    fontWeight:200,
-  
+    elevation: 2,
+    fontWeight: "300"
   },
   inputSpacing: {
     marginBottom: 12
@@ -88,14 +85,14 @@ const loginStyles = StyleSheet.create({
   divider: {
     flexDirection: "row",
     alignItems: "center",
-    marginVertical: 10
+
   },
   dividerLabel: {
     marginHorizontal: 12,
     color: "#6b7280",
     fontSize: 14,
-    marginBottom:14,
-    fontWeight: "300"
+    fontWeight: "300",
+    marginBottom:15
   },
   line: {
     flex: 1,
