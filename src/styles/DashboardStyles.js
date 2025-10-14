@@ -39,8 +39,7 @@ export const dashboardStyles = StyleSheet.create({
     width: 40,
     height: 40,
     alignItems: "center",
-    justifyContent: "center",
-   
+    justifyContent: "center"
   },
   menuIcon: {
     color: "#ffffff"
@@ -54,61 +53,119 @@ export const dashboardStyles = StyleSheet.create({
     marginTop: Platform.OS === "android" ? 96 : 74,
     flex: 1
   },
-  greetingWrapper: {
-    marginBottom: 24
+  primaryPanelCard: {
+    backgroundColor: "rgba(81, 146, 127, 0.5)",
+    borderRadius: 20,
+    padding: 20,
+    gap: 5,
+    marginBottom: 20,
+   
   },
-  headerTitle: {
-    fontSize: 28,
+  primaryPanelHeader: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between"
+  },
+  primaryPanelTitle: {
+    fontSize: 20,
     fontWeight: "700",
-    color: "#0f172a"
+    color: "#eff4f7ff"
   },
-  headerSubtitle: {
-    marginTop: 6,
-    fontSize: 16,
-    color: "#334155"
+  primaryPanelBadge: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 3,
+    backgroundColor: "rgba(49, 170, 223, 0.58)",
+    paddingVertical: 6,
+    paddingHorizontal: 6,
+    borderRadius: 999
+  },
+  primaryPanelBadgeIcon: {
+    color: "#eff4f7b2"
+  },
+  primaryPanelBadgeText: {
+    fontSize: 12,
+    fontWeight: "600",
+    color: "#ffffffbe"
+  },
+  primaryPanelSubtitle: {
+    fontSize: 14,
+    color: "#eff4f7ec",
+    lineHeight: 20,
+  },
+  primaryPanelStatusRow: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    gap: 12,
+
+  },
+  primaryPanelStatusItem: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 3,
+    padding: 5,
+    borderRadius: 10,
+    backgroundColor: "rgba(81, 146, 127, 0.3)",
+    flexBasis: "50%"
+  },
+  primaryPanelStatusIconWrapper: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    backgroundColor: "rgba(49, 170, 223, 0.58)",
+    alignItems: "center",
+    justifyContent: "center",
+    padding:10
+  },
+  primaryPanelStatusIcon: {
+    color: "#eff4f7b2",
+  },
+  primaryPanelStatusLabel: {
+    fontSize: 12,
+    margin:10,
+    textTransform: "uppercase",
+    color: "#eff4f7b2",
+  
+  },
+  primaryPanelStatusValue: {
+    marginTop: 4,
+    fontSize: 14,
+    fontWeight: "600",
+    color: "#eff4f7b2",
   },
   greeting: {
     fontSize: 26,
     fontWeight: "700",
-    color: "#0f172a"
+    color: "#eff4f7b2",
   },
   detail: {
     fontSize: 16,
     color: "#475569",
     marginTop: 8
   },
-  cardImageWrapper: {
-    marginBottom: 20,
-    borderRadius: 15,
-    elevation: 3,
-    opacity: 0.9,
-    overflow: "hidden"
+  alertCard: {
+    marginBottom: 24,
+    borderRadius: 18,
+    backgroundColor: "rgba(81, 146, 127, 0.5)",
+    padding: 20,
+    
   },
-  cardImage: {
-    width: "100%",
-    height: 100,
-    borderRadius: 15,
-    elevation: 3,
-    opacity: 0.9,
-    justifyContent: "center",
+  alertCardHeader: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 10
   },
-  cardImageInner: {
-    width: "100%",
-    height: "100%",
-    padding:200
-  
+  alertCardIcon: {
+    color: "#f87171"
   },
-  cardOverlayTitle: {
-    fontSize: 18,
-    fontWeight: "600",
-    color: "#1d262eff",
-    marginLeft:10
-  
+  alertCardTitle: {
+    fontSize: 20,
+    fontWeight: "700",
+    color: "#f8fafc"
   },
-  cardOverlayText: {
+  alertCardMessage: {
     fontSize: 14,
-    margin:5,
-    color: "#1d262eff",
+    color: "#e2e8f0",
     lineHeight: 20
   }
 });
@@ -225,7 +282,7 @@ export const dashboardModalStyles = StyleSheet.create({
   detailsCard: {
     backgroundColor: "rgba(255, 255, 255, 0.08)",
     borderRadius: 16,
-    padding: 10
+    padding: 14
   },
   detailsCardHeader: {
     flexDirection: "row",
@@ -233,24 +290,30 @@ export const dashboardModalStyles = StyleSheet.create({
     justifyContent: "space-between",
     marginBottom: 6
   },
-
+  detailsCardAction: {
+    padding: 6,
+    borderRadius: 999,
+    backgroundColor: "rgba(226, 232, 240, 0.12)"
+  },
   detailsCardActionImage: {
     width: 50,
     height: 50,
-    marginStart:3
+    marginStart: 3
   },
   detailsCardTuyaButton: {
+    marginTop: 8,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-    gap: 1,
+    gap: 10,
     backgroundColor: "rgba(56, 189, 248, 0.22)",
     borderRadius: 12,
-    height: 80
+    paddingVertical: 10,
+    paddingHorizontal: 16
   },
   detailsCardTuyaIcon: {
-    width: 100,
-    height: 100
+    width: 48,
+    height: 48
   },
   detailsCardTuyaLabel: {
     fontSize: 15,
@@ -269,7 +332,7 @@ export const dashboardModalStyles = StyleSheet.create({
     lineHeight: 18
   },
   footer: {
-    paddingTop: 30,
+    paddingTop: 16,
     borderTopWidth: 1,
     borderTopColor: "rgba(226, 232, 240, 0.2)"
   },
@@ -287,4 +350,3 @@ export const dashboardModalStyles = StyleSheet.create({
     fontWeight: "600"
   }
 });
-
