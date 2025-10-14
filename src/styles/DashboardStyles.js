@@ -77,27 +77,39 @@ export const dashboardStyles = StyleSheet.create({
     color: "#475569",
     marginTop: 8
   },
-  card: {
-    backgroundColor: "#ffffff",
-    padding: 20,
-    borderRadius: 16,
-    marginTop: 32,
-    gap: 8,
-    shadowColor: "#0f172a",
-    shadowOpacity: 0.08,
-    shadowRadius: 18,
-    shadowOffset: { width: 0, height: 10 },
-    elevation: 6
+  cardImageWrapper: {
+    marginBottom: 20,
+    borderRadius: 15,
+    elevation: 3,
+    opacity: 0.9,
+    overflow: "hidden"
   },
-  cardTitle: {
-    fontSize: 20,
+  cardImage: {
+    width: "100%",
+    height: 100,
+    borderRadius: 15,
+    elevation: 3,
+    opacity: 0.9,
+    justifyContent: "center",
+  },
+  cardImageInner: {
+    width: "100%",
+    height: "100%",
+    padding:200
+  
+  },
+  cardOverlayTitle: {
+    fontSize: 18,
     fontWeight: "600",
-    color: "#0f172a"
+    color: "#1d262eff",
+    marginLeft:10
+  
   },
-  cardContent: {
-    fontSize: 16,
-    color: "#334155",
-    lineHeight: 22
+  cardOverlayText: {
+    fontSize: 14,
+    margin:5,
+    color: "#1d262eff",
+    lineHeight: 20
   }
 });
 
@@ -213,7 +225,37 @@ export const dashboardModalStyles = StyleSheet.create({
   detailsCard: {
     backgroundColor: "rgba(255, 255, 255, 0.08)",
     borderRadius: 16,
-    padding: 14
+    padding: 10
+  },
+  detailsCardHeader: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    marginBottom: 6
+  },
+
+  detailsCardActionImage: {
+    width: 50,
+    height: 50,
+    marginStart:3
+  },
+  detailsCardTuyaButton: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: 1,
+    backgroundColor: "rgba(56, 189, 248, 0.22)",
+    borderRadius: 12,
+    height: 80
+  },
+  detailsCardTuyaIcon: {
+    width: 100,
+    height: 100
+  },
+  detailsCardTuyaLabel: {
+    fontSize: 15,
+    fontWeight: "600",
+    color: "#e0f2fe"
   },
   detailsCardTitle: {
     fontSize: 15,
@@ -227,7 +269,7 @@ export const dashboardModalStyles = StyleSheet.create({
     lineHeight: 18
   },
   footer: {
-    paddingTop: 16,
+    paddingTop: 30,
     borderTopWidth: 1,
     borderTopColor: "rgba(226, 232, 240, 0.2)"
   },
@@ -245,3 +287,4 @@ export const dashboardModalStyles = StyleSheet.create({
     fontWeight: "600"
   }
 });
+

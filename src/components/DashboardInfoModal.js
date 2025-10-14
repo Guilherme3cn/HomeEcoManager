@@ -1,9 +1,10 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import { Animated, ImageBackground, Modal, Pressable, ScrollView, Text, View } from "react-native";
+import { Animated, Image, ImageBackground, Modal, Pressable, ScrollView, Text, TouchableOpacity, View } from "react-native";
 import { Feather } from "@expo/vector-icons";
 
 import { dashboardModalStyles as styles } from "../styles/DashboardStyles";
 const modalBackground = require("../../assets/images/background_modal.png");
+const tuyaIcon = require("../../assets/images/icontuya.png");
 
 const MENU_ITEMS = [
   { id: "connection", label: "Conexao", icon: "link-2" },
@@ -19,7 +20,8 @@ const MENU_DETAILS = {
     cards: [
       {
         title: "Vinculacao de dispositivos",
-        description: "Cadastre sensores e medidores para acompanhar consumo em cada ambiente."
+        description: "Cadastre sensores e medidores para acompanhar consumo em cada ambiente.",
+        actionImage: tuyaIcon
       },
       {
         title: "Monitoramento continuo",
@@ -71,6 +73,8 @@ const MENU_DETAILS = {
 };
 
 const PANEL_OFFSET = -420;
+
+const noop = () => {};
 
 const makeInitials = name => {
   if (!name) {
@@ -171,12 +175,36 @@ export const DashboardInfoModal = ({ visible, onClose, onSignOut, userName, emai
                   <Text style={styles.detailsDescription}>{content.description}</Text>
 
                   <View style={styles.detailsCardList}>
-                    {content.cards.map(card => (
-                      <View key={card.title} style={styles.detailsCard}>
-                        <Text style={styles.detailsCardTitle}>{card.title}</Text>
-                        <Text style={styles.detailsCardText}>{card.description}</Text>
-                      </View>
-                    ))}
+                    {content.cards.map(card => {
+                      const isDeviceLinkCard = card.title === "Vinculacao de dispositivos";
+                      return (
+                        <View key={card.title} style={styles.detailsCard}>
+                          <View style={styles.detailsCardHeader}>
+                            <Text style={styles.detailsCardTitle}>{card.title}</Text>
+                            {card.actionImage ? (
+                              <Pressable
+                                accessibilityRole="button"
+                                onPress={card.onPress ?? noop}
+                              >
+                                <Image source={card.actionImage} style={styles.detailsCardActionImage} resizeMode="contain" />
+                              </Pressable>
+                            ) : null}
+                          </View>
+                          {isDeviceLinkCard ? (
+                            <TouchableOpacity
+                              activeOpacity={0.85}
+                              style={styles.detailsCardTuyaButton}
+                              onPress={noop}
+                            >
+                              <Image source={tuyaIcon} style={styles.detailsCardTuyaIcon} resizeMode="contain" />
+                              <Text style={styles.detailsCardTuyaLabel}>Logar com Tuya</Text>
+                            </TouchableOpacity>
+                          ) : (
+                            <Text style={styles.detailsCardText}>{card.description}</Text>
+                          )}
+                        </View>
+                      );
+                    })}
                   </View>
                 </View>
               </ScrollView>
@@ -196,10 +224,6 @@ export const DashboardInfoModal = ({ visible, onClose, onSignOut, userName, emai
     </Modal>
   );
 };
-
-
-
-
 
 
 
