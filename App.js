@@ -4,11 +4,14 @@ import { View, Text, StyleSheet } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { ClerkProvider, SignedIn, SignedOut } from "@clerk/clerk-expo";
 import Constants from "expo-constants";
+import * as WebBrowser from "expo-web-browser";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
 import { AppNavigator } from "./src/navigation/AppNavigator";
 import { AuthNavigator } from "./src/navigation/AuthNavigator";
 import { tokenCache } from "./src/utils/tokenCache";
+
+WebBrowser.maybeCompleteAuthSession();
 
 const publishableKey =
   process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY ||

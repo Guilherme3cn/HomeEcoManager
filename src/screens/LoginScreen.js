@@ -1,4 +1,4 @@
-ï»¿import React, { useCallback, useState } from "react";
+import React, { useCallback, useMemo, useState } from "react";
 import {
   View,
   Text,
@@ -12,22 +12,32 @@ import {
   ScrollView
 } from "react-native";
 import { useSignIn, useOAuth } from "@clerk/clerk-expo";
-import * as WebBrowser from "expo-web-browser";
-import * as Linking from "expo-linking";
+import * as AuthSession from "expo-auth-session";
+import Constants from "expo-constants";
 
 import { SocialSignInButton } from "../components/SocialSignInButton";
 import styles from "../styles/LoginScreenStyles";
+import { useWarmUpBrowser } from "../hooks/useWarmUpBrowser";
 
 const logoSource = require("../../assets/images/app-logo.png");
-
-WebBrowser.maybeCompleteAuthSession();
 
 const Container = Platform.OS === "ios" ? KeyboardAvoidingView : View;
 
 export const LoginScreen = ({ navigation }) => {
+  const redirectUrl = useMemo(() => {
+    const scheme = Constants.expoConfig?.scheme ?? "parmatec-app";
+    return AuthSession.makeRedirectUri({
+      path: "oauth-native-callback",
+      scheme,
+      useProxy: Constants.appOwnership === "expo"
+    });
+  }, []);
+
+  useWarmUpBrowser();
+
   const { signIn, setActive, isLoaded } = useSignIn();
-  const { startOAuthFlow: startGoogleOAuth } = useOAuth({ strategy: "oauth_google" });
-  const { startOAuthFlow: startFacebookOAuth } = useOAuth({ strategy: "oauth_facebook" });
+  const { startOAuthFlow: startGoogleOAuth } = useOAuth({ strategy: "oauth_google", redirectUrl });
+  const { startOAuthFlow: startFacebookOAuth } = useOAuth({ strategy: "oauth_facebook", redirectUrl });
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -59,15 +69,22 @@ export const LoginScreen = ({ navigation }) => {
 
   const handleOauthSignIn = useCallback(
     async startFlow => {
-      if (!isLoaded || isSubmitting) {
+      console.log('handleOauthSignIn invoked', { isLoaded, isSubmitting });
+      if (!isLoaded) {
+        Alert.alert('Autenticação', 'Clerk ainda está carregando, tente novamente em instantes.');
+        return;
+      }
+      if (isSubmitting) {
         return;
       }
 
       setIsSubmitting(true);
 
       try {
-        const redirectUrl = Linking.createURL("/oauth") || undefined;
-        const result = await startFlow({ redirectUrl });
+        console.log('Starting OAuth flow');
+        const result = await startFlow();
+        const redirectURL = result?.signIn?.firstFactorVerification?.externalVerificationRedirectURL;
+        console.log('OAuth flow resolved', { type: result?.authSessionResult?.type, createdSessionId: result?.createdSessionId, redirectURL: redirectURL ? redirectURL.toString() : null });
 
         const createdSessionId = result?.createdSessionId;
         const externalSetActive = result?.setActive;
@@ -89,6 +106,7 @@ export const LoginScreen = ({ navigation }) => {
           await setActive({ session: sessionId });
         }
       } catch (err) {
+        console.error('Facebook OAuth failed', JSON.stringify(err));
         const message = err?.errors?.[0]?.message ?? "Unable to authenticate";
         Alert.alert("Social login failed", message);
       } finally {
@@ -168,3 +186,13 @@ export const LoginScreen = ({ navigation }) => {
     </Container>
   );
 };
+
+
+
+
+
+
+
+
+
+

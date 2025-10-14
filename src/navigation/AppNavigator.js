@@ -7,11 +7,11 @@ const Stack = createNativeStackNavigator();
 
 export const AppNavigator = () => {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen
         name="Dashboard"
         component={DashboardScreen}
-        options={{ title: "Dashboard" }}
+       
       />
     </Stack.Navigator>
   );

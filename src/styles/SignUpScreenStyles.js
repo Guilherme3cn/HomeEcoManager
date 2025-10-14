@@ -36,7 +36,7 @@ const signUpStyles = StyleSheet.create({
   },
   card: {
     width: "100%",
-    backgroundColor: "#f2faf4ff",
+    backgroundColor: "#ecfdf3",
     borderRadius: 20,
     paddingVertical: 28,
     paddingHorizontal: 22,
@@ -52,7 +52,7 @@ const signUpStyles = StyleSheet.create({
     elevation: 6
   },
   input: {
-    backgroundColor: "#f2faf4ff",
+    backgroundColor: "#ecfdf3",
     borderRadius: 12,
     paddingHorizontal: 16,
     paddingVertical: 14,
@@ -63,7 +63,8 @@ const signUpStyles = StyleSheet.create({
     fontWeight: "300"
   },
   inputSpacing: {
-    marginBottom: 12
+    marginBottom: 12,
+    fontWeight: "200"
   },
   primaryButton: {
     backgroundColor: "#16a34a",
@@ -116,7 +117,7 @@ const signUpStyles = StyleSheet.create({
   switchAuthText: {
     color: "#047857",
     fontSize: 15,
-    fontWeight: "600"
+    fontWeight: "300"
   }
 });
 

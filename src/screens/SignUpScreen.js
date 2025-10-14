@@ -1,4 +1,4 @@
-ï»¿import React, { useCallback, useState } from "react";
+import React, { useCallback, useMemo, useState } from "react";
 import {
   View,
   Text,
@@ -12,18 +12,32 @@ import {
   ScrollView
 } from "react-native";
 import { useSignUp, useOAuth } from "@clerk/clerk-expo";
+import * as AuthSession from "expo-auth-session";
+import Constants from "expo-constants";
 
 import { SocialSignInButton } from "../components/SocialSignInButton";
 import styles from "../styles/SignUpScreenStyles";
+import { useWarmUpBrowser } from "../hooks/useWarmUpBrowser";
 
 const logoSource = require("../../assets/images/app-logo.png");
 
 const Container = Platform.OS === "ios" ? KeyboardAvoidingView : View;
 
 export const SignUpScreen = ({ navigation }) => {
+  const redirectUrl = useMemo(() => {
+    const scheme = Constants.expoConfig?.scheme ?? "parmatec-app";
+    return AuthSession.makeRedirectUri({
+      path: "oauth-native-callback",
+      scheme,
+      useProxy: Constants.appOwnership === "expo"
+    });
+  }, []);
+
+  useWarmUpBrowser();
+
   const { isLoaded, signUp, setActive } = useSignUp();
-  const { startOAuthFlow: startGoogleOAuth } = useOAuth({ strategy: "oauth_google" });
-  const { startOAuthFlow: startFacebookOAuth } = useOAuth({ strategy: "oauth_facebook" });
+  const { startOAuthFlow: startGoogleOAuth } = useOAuth({ strategy: "oauth_google", redirectUrl });
+  const { startOAuthFlow: startFacebookOAuth } = useOAuth({ strategy: "oauth_facebook", redirectUrl });
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -82,13 +96,19 @@ export const SignUpScreen = ({ navigation }) => {
 
   const handleOauthSignIn = useCallback(
     async startFlow => {
-      if (!isLoaded || isSubmitting) {
+      console.log('handleOauthSignIn sign-up invoked', { isLoaded, isSubmitting });
+      if (!isLoaded) {
+        Alert.alert('Autenticação', 'Clerk ainda está carregando, tente novamente em instantes.');
+        return;
+      }
+      if (isSubmitting) {
         return;
       }
 
       setIsSubmitting(true);
 
       try {
+        console.log('Starting OAuth flow (sign-up)');
         const result = await startFlow();
         const createdSessionId = result?.createdSessionId;
         const externalSetActive = result?.setActive;
@@ -110,6 +130,7 @@ export const SignUpScreen = ({ navigation }) => {
           await setActive({ session: sessionId });
         }
       } catch (err) {
+        console.error('Facebook OAuth failed', JSON.stringify(err));
         const message = err?.errors?.[0]?.message ?? "Unable to authenticate";
         Alert.alert("Social login failed", message);
       } finally {
@@ -212,3 +233,12 @@ export const SignUpScreen = ({ navigation }) => {
     </Container>
   );
 };
+
+
+
+
+
+
+
+
+
