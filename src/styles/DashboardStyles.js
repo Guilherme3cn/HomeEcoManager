@@ -8,21 +8,21 @@ export const dashboardStyles = StyleSheet.create({
   },
   backgroundOverlay: {
     ...StyleSheet.absoluteFillObject,
-    backgroundColor: "#5fd1be4d"
+    backgroundColor: "rgba(209, 235, 219, 0.6)"
   },
   container: {
     flex: 1,
     paddingTop: TOP_SPACING,
     paddingHorizontal: 24
   },
-  menuButton: {
+  menuButtonLeft: {
     position: "absolute",
     top: Platform.OS === "android" ? 42 : 18,
-    right: 24,
+    left: 24,
     width: 48,
     height: 48,
     borderRadius: 24,
-    backgroundColor: "#208840eb",
+    backgroundColor: "rgba(65, 97, 79, 0.94)",
     alignItems: "center",
     justifyContent: "center",
     shadowColor: "#208840eb",
@@ -32,8 +32,23 @@ export const dashboardStyles = StyleSheet.create({
     elevation: 6,
     zIndex: 2
   },
+  menuButtonRight: {
+    position: "absolute",
+    top: Platform.OS === "android" ? 42 : 18,
+    right: 20,
+    width: 40,
+    height: 40,
+    alignItems: "center",
+    justifyContent: "center",
+   
+  },
   menuIcon: {
     color: "#ffffff"
+  },
+  logoBadge: {
+    width: 80,
+    height: 80,
+    resizeMode: "contain"
   },
   content: {
     marginTop: Platform.OS === "android" ? 96 : 74,
@@ -90,29 +105,36 @@ export const dashboardModalStyles = StyleSheet.create({
   overlay: {
     flex: 1,
     flexDirection: "row",
-    backgroundColor: "rgba(15, 23, 42, 0.25)"
+    backgroundColor: "transparent"
   },
   panel: {
     width: "80%",
     maxWidth: 360,
-    backgroundColor: "#0b275e",
+    borderTopRightRadius: 32,
+    borderBottomRightRadius: 32,
+    overflow: "hidden"
+  },
+  panelImageWrapper: {
+    flex: 1
+  },
+  panelImage: {
+    width: "100%",
+    height: "100%"
+  },
+  panelInner: {
+    flex: 1,
     paddingTop: Platform.OS === "android" ? 60 : 48,
     paddingBottom: 36,
     paddingHorizontal: 28,
-    borderTopRightRadius: 32,
-    borderBottomRightRadius: 32,
-    elevation: 14,
-    shadowColor: "#000",
-    shadowOpacity: 0.25,
-    shadowRadius: 24,
-    shadowOffset: { width: 6, height: 6 }
+    backgroundColor: "rgba(65, 97, 79, 0.94)"
   },
   panelScroll: {
     flexGrow: 1,
     paddingBottom: 24
   },
   backdropTouchable: {
-    flex: 1
+    flex: 1,
+    backgroundColor: "transparent"
   },
   profileWrapper: {
     alignItems: "flex-start",
@@ -122,7 +144,7 @@ export const dashboardModalStyles = StyleSheet.create({
     width: 64,
     height: 64,
     borderRadius: 32,
-    backgroundColor: "rgba(255, 255, 255, 0.12)",
+    backgroundColor: "rgba(114, 151, 130, 0.43)",
     alignItems: "center",
     justifyContent: "center",
     marginBottom: 16

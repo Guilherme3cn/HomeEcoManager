@@ -1,5 +1,6 @@
+
 import React, { useMemo, useState } from "react";
-import { ImageBackground, Text, TouchableOpacity, View } from "react-native";
+import { Image, ImageBackground, Text, TouchableOpacity, View } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import { useAuth, useUser } from "@clerk/clerk-expo";
 
@@ -7,6 +8,7 @@ import { dashboardStyles as styles } from "../styles/DashboardStyles";
 import { DashboardInfoModal } from "../components/DashboardInfoModal";
 
 const backgroundSource = require('../../assets/images/background_dashboard.png');
+const logoSource = require('../../assets/images/app-logo.png');
 
 export const DashboardScreen = () => {
   const { user } = useUser();
@@ -29,9 +31,12 @@ export const DashboardScreen = () => {
       <View style={styles.backgroundOverlay} />
 
       <View style={styles.container}>
-        <TouchableOpacity style={styles.menuButton} onPress={openModal}>
+        <TouchableOpacity style={styles.menuButtonLeft} onPress={openModal}>
           <Feather name="menu" size={24} style={styles.menuIcon} />
         </TouchableOpacity>
+        <View style={styles.menuButtonRight}>
+          <Image source={logoSource} style={styles.logoBadge} />
+        </View>
 
         <View style={styles.content}>
           <View style={styles.greetingWrapper}>
@@ -64,4 +69,14 @@ export const DashboardScreen = () => {
     </ImageBackground>
   );
 };
+
+
+
+
+
+
+
+
+
+
 

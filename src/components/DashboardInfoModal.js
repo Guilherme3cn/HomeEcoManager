@@ -1,8 +1,9 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import { Animated, Modal, Pressable, ScrollView, Text, View } from "react-native";
+import { Animated, ImageBackground, Modal, Pressable, ScrollView, Text, View } from "react-native";
 import { Feather } from "@expo/vector-icons";
 
 import { dashboardModalStyles as styles } from "../styles/DashboardStyles";
+const modalBackground = require("../../assets/images/background_modal.png");
 
 const MENU_ITEMS = [
   { id: "connection", label: "Conexao", icon: "link-2" },
@@ -130,56 +131,64 @@ export const DashboardInfoModal = ({ visible, onClose, onSignOut, userName, emai
     <Modal transparent animationType="none" visible={visible} onRequestClose={handleRequestClose}>
       <View style={styles.overlay}>
         <Animated.View style={[styles.panel, { transform: [{ translateX: panelTranslate }] }]}>
-          <ScrollView contentContainerStyle={styles.panelScroll} showsVerticalScrollIndicator={false}>
-            <View style={styles.profileWrapper}>
-              <View style={styles.avatarPlaceholder}>
-                <Text style={styles.avatarInitials}>{initials}</Text>
-              </View>
-              <Text style={styles.profileGreeting}>Ola, {displayName}</Text>
-              <Text style={styles.profileEmail}>{subtitle}</Text>
-            </View>
-
-            <View style={styles.navList}>
-              {MENU_ITEMS.map(item => {
-                const isActive = item.id === activeItem;
-                return (
-                  <Pressable
-                    key={item.id}
-                    style={[styles.navItem, isActive && styles.navItemActive]}
-                    onPress={() => setActiveItem(item.id)}
-                  >
-                    <Feather
-                      name={item.icon}
-                      size={18}
-                      style={[styles.navIcon, isActive && styles.navIconActive]}
-                    />
-                    <Text style={[styles.navLabel, isActive && styles.navLabelActive]}>{item.label}</Text>
-                  </Pressable>
-                );
-              })}
-            </View>
-
-            <View style={styles.detailsWrapper}>
-              <Text style={styles.detailsHeader}>{content.title}</Text>
-              <Text style={styles.detailsDescription}>{content.description}</Text>
-
-              <View style={styles.detailsCardList}>
-                {content.cards.map(card => (
-                  <View key={card.title} style={styles.detailsCard}>
-                    <Text style={styles.detailsCardTitle}>{card.title}</Text>
-                    <Text style={styles.detailsCardText}>{card.description}</Text>
+          <ImageBackground
+            source={modalBackground}
+            style={styles.panelImageWrapper}
+            imageStyle={styles.panelImage}
+          >
+            <View style={styles.panelInner}>
+              <ScrollView contentContainerStyle={styles.panelScroll} showsVerticalScrollIndicator={false}>
+                <View style={styles.profileWrapper}>
+                  <View style={styles.avatarPlaceholder}>
+                    <Text style={styles.avatarInitials}>{initials}</Text>
                   </View>
-                ))}
+                  <Text style={styles.profileGreeting}>Ola, {displayName}</Text>
+                  <Text style={styles.profileEmail}>{subtitle}</Text>
+                </View>
+
+                <View style={styles.navList}>
+                  {MENU_ITEMS.map(item => {
+                    const isActive = item.id === activeItem;
+                    return (
+                      <Pressable
+                        key={item.id}
+                        style={[styles.navItem, isActive && styles.navItemActive]}
+                        onPress={() => setActiveItem(item.id)}
+                      >
+                        <Feather
+                          name={item.icon}
+                          size={18}
+                          style={[styles.navIcon, isActive && styles.navIconActive]}
+                        />
+                        <Text style={[styles.navLabel, isActive && styles.navLabelActive]}>{item.label}</Text>
+                      </Pressable>
+                    );
+                  })}
+                </View>
+
+                <View style={styles.detailsWrapper}>
+                  <Text style={styles.detailsHeader}>{content.title}</Text>
+                  <Text style={styles.detailsDescription}>{content.description}</Text>
+
+                  <View style={styles.detailsCardList}>
+                    {content.cards.map(card => (
+                      <View key={card.title} style={styles.detailsCard}>
+                        <Text style={styles.detailsCardTitle}>{card.title}</Text>
+                        <Text style={styles.detailsCardText}>{card.description}</Text>
+                      </View>
+                    ))}
+                  </View>
+                </View>
+              </ScrollView>
+
+              <View style={styles.footer}>
+                <Pressable style={styles.exitButton} onPress={handleSignOutPress}>
+                  <Feather name="log-out" size={18} style={styles.exitIcon} />
+                  <Text style={styles.exitLabel}>Sair</Text>
+                </Pressable>
               </View>
             </View>
-          </ScrollView>
-
-          <View style={styles.footer}>
-            <Pressable style={styles.exitButton} onPress={handleSignOutPress}>
-              <Feather name="log-out" size={18} style={styles.exitIcon} />
-              <Text style={styles.exitLabel}>Sair</Text>
-            </Pressable>
-          </View>
+          </ImageBackground>
         </Animated.View>
 
         <Pressable style={styles.backdropTouchable} onPress={handleRequestClose} />
@@ -187,3 +196,10 @@ export const DashboardInfoModal = ({ visible, onClose, onSignOut, userName, emai
     </Modal>
   );
 };
+
+
+
+
+
+
+
