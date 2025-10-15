@@ -95,31 +95,36 @@ export const dashboardStyles = StyleSheet.create({
     lineHeight: 20,
   },
   primaryPanelStatusRow: {
-    flexDirection: "row",
-    gap: 10,
-    justifyContent: "space-between"
-
+    flexDirection: "column",
+    gap: 14
   },
   primaryPanelStatusItem: {
     flexDirection: "row",
     alignItems: "center",
-    gap: 5,
-    padding: 10,
+    gap: 12,
+    paddingHorizontal: 14,
+    paddingVertical: 12,
     borderRadius: 10,
     backgroundColor: "rgba(69, 131, 112, 0.64)",
-    flexBasis: "50%"
+    width: "100%"
+    
+  },
+  primaryPanelStatusItemDisabled: {
+    opacity: 0.7
   },
   primaryPanelStatusIconWrapper: {
-    width: 40,
-    height: 40,
+    width: 44,
+    height: 44,
     borderRadius: 20,
     backgroundColor: "rgba(49, 171, 223, 0.59)",
     alignItems: "center",
-    justifyContent: "center",
-    padding:10
+    justifyContent: "center"
   },
   primaryPanelStatusIcon: {
     color: "#eff4f7e5",
+  },
+  primaryPanelStatusCopy: {
+    flex: 1
   },
   primaryPanelStatusLabel: {
     fontSize: 12,
@@ -133,6 +138,12 @@ export const dashboardStyles = StyleSheet.create({
     fontSize: 14,
     fontWeight: "600",
     color: "#eff4f7b2",
+  },
+  primaryPanelErrorText: {
+    marginTop: 10,
+    fontSize: 12,
+    color: "#f87171",
+    fontWeight: "600"
   },
   greeting: {
     fontSize: 26,
