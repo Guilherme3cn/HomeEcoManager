@@ -8,7 +8,7 @@ export const dashboardStyles = StyleSheet.create({
   },
   backgroundOverlay: {
     ...StyleSheet.absoluteFillObject,
-    backgroundColor: "rgba(209, 235, 219, 0.6)"
+    backgroundColor: "rgba(209, 235, 219, 0.5)"
   },
   container: {
     flex: 1,
@@ -54,7 +54,7 @@ export const dashboardStyles = StyleSheet.create({
     flex: 1
   },
   primaryPanelCard: {
-    backgroundColor: "rgba(81, 146, 127, 0.5)",
+    backgroundColor: "rgba(52, 131, 107, 0.4)",
     borderRadius: 20,
     padding: 20,
     gap: 5,
@@ -69,7 +69,8 @@ export const dashboardStyles = StyleSheet.create({
   primaryPanelTitle: {
     fontSize: 20,
     fontWeight: "700",
-    color: "#eff4f7ff"
+    color: "#eff4f7ff",
+    margin:3
   },
   primaryPanelBadge: {
     flexDirection: "row",
@@ -84,7 +85,7 @@ export const dashboardStyles = StyleSheet.create({
     color: "#eff4f7b2"
   },
   primaryPanelBadgeText: {
-    fontSize: 12,
+    fontSize: 11,
     fontWeight: "600",
     color: "#ffffffbe"
   },
@@ -95,34 +96,34 @@ export const dashboardStyles = StyleSheet.create({
   },
   primaryPanelStatusRow: {
     flexDirection: "row",
-    flexWrap: "wrap",
-    gap: 12,
+    gap: 10,
+    justifyContent: "space-between"
 
   },
   primaryPanelStatusItem: {
     flexDirection: "row",
     alignItems: "center",
-    gap: 3,
-    padding: 5,
+    gap: 5,
+    padding: 10,
     borderRadius: 10,
-    backgroundColor: "rgba(81, 146, 127, 0.3)",
+    backgroundColor: "rgba(69, 131, 112, 0.64)",
     flexBasis: "50%"
   },
   primaryPanelStatusIconWrapper: {
     width: 40,
     height: 40,
     borderRadius: 20,
-    backgroundColor: "rgba(49, 170, 223, 0.58)",
+    backgroundColor: "rgba(49, 171, 223, 0.59)",
     alignItems: "center",
     justifyContent: "center",
     padding:10
   },
   primaryPanelStatusIcon: {
-    color: "#eff4f7b2",
+    color: "#eff4f7e5",
   },
   primaryPanelStatusLabel: {
     fontSize: 12,
-    margin:10,
+    margin:3,
     textTransform: "uppercase",
     color: "#eff4f7b2",
   
@@ -146,8 +147,9 @@ export const dashboardStyles = StyleSheet.create({
   alertCard: {
     marginBottom: 24,
     borderRadius: 18,
-    backgroundColor: "rgba(81, 146, 127, 0.5)",
+    backgroundColor:"rgba(255, 255, 255, 0.88)",
     padding: 20,
+    elevation:3
     
   },
   alertCardHeader: {
@@ -161,11 +163,11 @@ export const dashboardStyles = StyleSheet.create({
   alertCardTitle: {
     fontSize: 20,
     fontWeight: "700",
-    color: "#f8fafc"
+    color: "#0000008e"
   },
   alertCardMessage: {
     fontSize: 14,
-    color: "#e2e8f0",
+    color: "#050505c7",
     lineHeight: 20
   }
 });

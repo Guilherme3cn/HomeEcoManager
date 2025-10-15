@@ -25,6 +25,9 @@ export const DashboardScreen = () => {
 
   const openModal = () => setModalVisible(true);
   const closeModal = () => setModalVisible(false);
+  const handleAddIoTDevice = () => {
+    console.log("Add IoT device button pressed");
+  };
 
   return (
     <ImageBackground source={backgroundSource} style={styles.background} resizeMode="cover">
@@ -41,7 +44,7 @@ export const DashboardScreen = () => {
         <View style={styles.content}>
           <View style={styles.primaryPanelCard}>
             <View style={styles.primaryPanelHeader}>
-              <Text style={styles.primaryPanelTitle}>Painel principal</Text>
+              <Text style={styles.primaryPanelTitle}>Temperatura Atual</Text>
               <View style={styles.primaryPanelBadge}>
                 <Feather name="map-pin" size={14} style={styles.primaryPanelBadgeIcon} />
                 <Text style={styles.primaryPanelBadgeText}>Localizacao inteligente</Text>
@@ -75,6 +78,31 @@ export const DashboardScreen = () => {
             </View>
           </View>
 
+          <View style={styles.primaryPanelCard}>
+             <Text style={{ color: "#ffffffcc", fontSize: 14, fontWeight: "700", marginBottom:10 }}>
+                Adicione dispositivos inteligentes
+              </Text>
+            <TouchableOpacity
+              onPress={handleAddIoTDevice}
+              activeOpacity={0.85}
+              style={{
+                width: "100%",
+                paddingVertical: 16,
+                paddingHorizontal: 20,
+                borderRadius: 16,
+                backgroundColor: "rgba(42, 146, 190, 0.86)",
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <Feather name="smartphone" size={20} color="#fff" style={{ marginRight: 10 }} />
+              <Text style={{ color: "#fff", fontSize: 16, fontWeight: "600" }}>
+                Adicionar dispositivo IoT
+              </Text>
+            </TouchableOpacity>
+          </View>
+
           <View style={styles.alertCard}>
             <View style={styles.alertCardHeader}>
               <Feather name="alert-triangle" size={18} style={styles.alertCardIcon} />
@@ -84,6 +112,8 @@ export const DashboardScreen = () => {
               Conecte com a Tuya para acessar dados dos dispositivos IoT na area de conexao.
             </Text>
           </View>
+
+          
 
           <Text style={styles.greeting}>Ola{greetingSuffix}</Text>
           <Text style={styles.detail}>Email: {email}</Text>
